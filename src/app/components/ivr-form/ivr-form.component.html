@@ -1,0 +1,41 @@
+<form [formGroup]="ivrForm" (ngSubmit)="onSubmit()">
+    <div>
+        <div>
+            <div>
+                <label for="ivrFormName">Название IVR*</label>
+                <input id="ivrFormName" formControlName="name" type="text">
+            </div>
+            <div>
+                <label for="ivrFormAnnouncement"> Приветствие</label>
+                <select id="ivrFormAnnouncement" formControlName="announcement">
+                    <option>audilfile1.wav</option>
+                    <option>audilfile2.wav</option>
+                </select>
+            </div>
+        </div>
+        <div>
+            <div>
+                <label for="ivrFormDescription">Описание</label>
+                <input id="ivrFormDescription" formControlName="description" type="text">
+            </div>
+        </div>
+        <div>
+            <div>
+                <label for="ivrFormTimeout">Таймаут</label>
+                <input id="ivrFormTimeout" formControlName="timeout" type="number">
+            </div>
+            <div>
+                <label for="ivrFormIinvalidRetries">Неудачных попыток</label>
+                <input id="ivrFormIinvalidRetries" formControlName="invalidRetries" type="number">
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <app-ivr-entity-form formControlName="ivrEntityList"></app-ivr-entity-form>
+    </div>
+
+
+
+    <button type="submit">Добавить</button>
+</form>
