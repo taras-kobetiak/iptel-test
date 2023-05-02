@@ -2,19 +2,17 @@
 <br><br>
 Second Array
 
-
 <form [formGroup]="ivrEntytyForm">
     <ng-container formArrayName="arrayItemsControl">
         <ng-container *ngFor="let item of buttonsItems, let i=index">
             <div [formGroupName]="i">
-                <select type="text" formControlName="button">
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
+                <select formControlName="button">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
                 </select>
-
                 <div formArrayName="actions">
-                    <ng-container *ngFor="let item of getButtonActionsControl(i), let j=index">
+                    <ng-container *ngFor="let item of getButtonActionsControl(i).controls, let j=index">
                         <input type="text" formControlName="{{j}}">
                         <button (click)="deleteButtonAction(i, j)">Delete action</button>
                     </ng-container>
@@ -22,10 +20,10 @@ Second Array
                     <button (click)="addButtonAction(i)">Add action</button>
                 </div>
 
-                <select type="text" formControlName="status">
-                    <option value="">10</option>
-                    <option value="">20</option>
-                    <option value="">30</option>
+                <select formControlName="status">
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
                 </select>
             </div>
             <button (click)="removeArrayItem(i)">Удалить кнопку</button>

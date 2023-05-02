@@ -18,8 +18,6 @@ export class IvrEntityFormComponent implements OnInit, ControlValueAccessor {
   ivrEntytyForm: FormGroup;
 
 
-
-
   get buttonsControls(): FormArray {
     return this.ivrEntytyForm.get('arrayItemsControl') as FormArray;
   }
@@ -48,7 +46,7 @@ export class IvrEntityFormComponent implements OnInit, ControlValueAccessor {
 
 
     this.ivrEntytyForm.valueChanges.pipe().subscribe((form: FormGroup) => {
-      console.log(form);
+      // console.log(form);
       this.onChange(form);
     })
   }
@@ -65,9 +63,9 @@ export class IvrEntityFormComponent implements OnInit, ControlValueAccessor {
     this.onTouched = fn;
   }
 
-  getButtonActionsControl(i: number): FormControl[] {
-    let formArray = this.buttonsItems[i].controls['actions'] as FormArray;
-    return formArray.controls as FormControl[];
+  getButtonActionsControl(i: number): FormArray {
+    return this.buttonsItems[i].controls['actions'] as FormArray;
+
   }
 
 
@@ -82,31 +80,25 @@ export class IvrEntityFormComponent implements OnInit, ControlValueAccessor {
   }
 
   addButtonAction(i: number): void {
-    const control = this.ivrEntytyForm.get('')
-
-
-    console.log(this.buttonsItems[i].controls['actions'] as FormArray);
-
-
-
-    (this.buttonsItems[i].controls['actions'] as FormArray)
-      .push(this.fb.control)
+    const buttons = this.buttonsItems[i].controls['actions'] as FormArray
+    buttons.push(this.fb.control(''));
   }
 
   addArrayItem() {
-    this.buttonsControls.push(
-      this.fb.array([
-        this.fb.group({
-          button: ['', [Validators.required]],
+    console.log(this.buttonsControls);
 
-          actions: this.fb.array([
-            this.fb.control('1230'),
-            this.fb.control('1240')
-          ], [Validators.required]),
-          status: ['', [Validators.required]]
-        })
-      ])
+    this.buttonsControls.push(
+
+      this.fb.group({
+        button: ['', [Validators.required]],
+
+        actions: this.fb.array([
+          this.fb.control('1230'),
+          this.fb.control('1240')
+        ], [Validators.required]),
+        status: ['', [Validators.required]]
+      })
+
     )
   }
-
 }

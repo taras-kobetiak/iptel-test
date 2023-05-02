@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -35,14 +35,13 @@ export class IvrFormComponent implements OnInit {
       // timeoutRecording: '',
       // timeoutDestination: '',
 
-
       ivrEntityList: [[]]
     })
   }
 
   onSubmit(): void {
     console.log(this.ivrForm);
-
   }
 
 }
+
