@@ -1,5 +1,7 @@
-import { Component, OnInit, forwardRef } from '@angular/core';
+import { Component, OnDestroy, OnInit, forwardRef } from '@angular/core';
 import { ControlValueAccessor, FormArray, FormBuilder, FormControl, FormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
+import { DataService, IData } from './services/data.service';
 
 @Component({
   selector: 'app-ivr-entity-form',
@@ -11,12 +13,14 @@ import { ControlValueAccessor, FormArray, FormBuilder, FormControl, FormGroup, N
     multi: true
   }]
 })
-export class IvrEntityFormComponent implements OnInit, ControlValueAccessor {
+export class IvrEntityFormComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
   onChange: any;
   onTouched: any;
   ivrEntytyForm: FormGroup;
+  data: IData;
 
+  private unsubscribingData$: Subject<void> = new Subject<void>();
 
   get buttonsControls(): FormArray {
     return this.ivrEntytyForm.get('arrayItemsControl') as FormArray;
@@ -26,31 +30,34 @@ export class IvrEntityFormComponent implements OnInit, ControlValueAccessor {
     return this.buttonsControls.controls as FormGroup[];
   }
 
-
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.ivrEntytyForm = this.fb.group({
-      arrayItemsControl: this.fb.array([
-        this.fb.group({
-          button: ['', [Validators.required]],
 
-          actions: this.fb.array([
-            this.fb.control('123'),
-            this.fb.control('124')
-          ], [Validators.required]),
-          status: ['', [Validators.required]]
-        })
-      ])
-    })
+    this.createIvrEntityForm();
+    this.data = this.dataService.getData();
 
-
-    this.ivrEntytyForm.valueChanges.pipe().subscribe((form: FormGroup) => {
-      // console.log(form);
+    this.ivrEntytyForm.valueChanges.pipe(
+      takeUntil(this.unsubscribingData$)
+    ).subscribe((form: FormGroup) => {
       this.onChange(form);
     })
   }
 
+  createIvrEntityForm(): void {
+    this.ivrEntytyForm = this.fb.group({
+      arrayItemsControl: this.fb.array([
+        this.fb.group({
+          button: [0, [Validators.required]],
+          actions: this.fb.array([
+            this.fb.control('', [Validators.required]),
+            this.fb.control('', [Validators.required])
+          ], [Validators.required]),
+          status: [, [Validators.required]]
+        })
+      ])
+    })
+  }
 
   writeValue(obj: any): void {
   }
@@ -65,40 +72,37 @@ export class IvrEntityFormComponent implements OnInit, ControlValueAccessor {
 
   getButtonActionsControl(i: number): FormArray {
     return this.buttonsItems[i].controls['actions'] as FormArray;
-
   }
-
 
   removeArrayItem(i: number): void {
     this.buttonsControls.removeAt(i);
   }
 
-
   deleteButtonAction(i: number, j: number): void {
-    (this.buttonsItems[i].controls['actions'] as FormArray)
-      .removeAt(j)
+    const actions = this.getButtonActionsControl(i);
+    actions.removeAt(j)
   }
 
   addButtonAction(i: number): void {
-    const buttons = this.buttonsItems[i].controls['actions'] as FormArray
-    buttons.push(this.fb.control(''));
+    const actions = this.getButtonActionsControl(i);
+    actions.push(this.fb.control(''));
   }
 
-  addArrayItem() {
-    console.log(this.buttonsControls);
-
+  addArrayItem(): void {
     this.buttonsControls.push(
-
       this.fb.group({
-        button: ['', [Validators.required]],
-
+        button: [this.buttonsControls.length, [Validators.required]],
         actions: this.fb.array([
-          this.fb.control('1230'),
-          this.fb.control('1240')
+          this.fb.control('', [Validators.required]),
+          this.fb.control('', [Validators.required])
         ], [Validators.required]),
-        status: ['', [Validators.required]]
+        status: [this.data.statuses[0], [Validators.required]]
       })
-
     )
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribingData$.next();
+    this.unsubscribingData$.complete();
   }
 }

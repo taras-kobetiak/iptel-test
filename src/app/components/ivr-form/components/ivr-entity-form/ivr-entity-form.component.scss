@@ -1,0 +1,168 @@
+.wrapper {}
+
+.actions-form {
+    padding: 20px;
+    padding-bottom: 40px;
+    background-color: rgb(219, 241, 248);
+    border-radius: 10px;
+    min-height: 28rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+
+    select {
+        padding-left: 10px;
+        width: 250px;
+        height: 40px;
+        border: 2px solid rgb(157, 152, 152);
+        border-radius: 10px;
+    }
+}
+
+.action-form__controls {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.action-form__items {
+    display: flex;
+    gap: 30px;
+}
+
+.action-form__item {
+    display: flex;
+    gap: 20px;
+}
+
+.item-action-form__button {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.item-action-form__button {
+    select {
+        padding: 10px;
+        width: 120px;
+    }
+}
+
+.item-action-form__delete-button,
+button {
+    padding: 10px;
+    cursor: pointer;
+    color: white;
+    width: 120px;
+    background-color: rgba(42, 51, 55, 0.516);
+    border: none;
+    border-radius: 3px;
+
+    &:hover {
+        background-color: rgba(26, 30, 32, 0.516);
+        transform: scale(1.05);
+    }
+
+    &:disabled {
+        opacity: 0.2;
+    }
+}
+
+.controls-item-action-form__items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.item-action-form__main-data {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.item-action-form__add-action-button {
+    padding: 10px;
+    padding-left: 35px;
+    cursor: pointer;
+
+    width: 120px;
+    background: url('../../../../../assets/img/ivr-entity-form/cross.png')10% 50%/15px no-repeat;
+    background-color: rgba(42, 51, 55, 0.516);
+    border: none;
+    border-radius: 3px;
+
+    &:hover {
+        background-color: rgba(26, 30, 32, 0.516);
+        transform: scale(1.05);
+    }
+
+    button {
+        cursor: pointer;
+        color: white;
+        border: none;
+        background: none;
+
+
+        &:disabled {
+            opacity: 0.2;
+        }
+    }
+}
+
+.item-action-form__status {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.controls-item-action-form__delete {
+
+    button {
+        cursor: pointer;
+        border: none;
+        background: none;
+        opacity: 0.2;
+
+        &:hover {
+            opacity: 0.6;
+            transform: scale(1.05);
+        }
+
+        &:disabled {
+            opacity: 0.2;
+        }
+    }
+
+    img {
+        width: 20px;
+    }
+}
+
+.controls-item-action-form__item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.actions-form__add-buton {
+    padding: 10px;
+    padding-left: 35px;
+    cursor: pointer;
+    color: white;
+    width: 120px;
+    background: url('../../../../../assets/img/ivr-entity-form/cross.png')10% 50%/20px no-repeat;
+    background-color: rgba(42, 51, 55, 0.516);
+    border: none;
+    border-radius: 3px;
+
+    &:hover {
+        background-color: rgba(26, 30, 32, 0.516);
+        transform: scale(1.05);
+    }
+
+    &:disabled {
+        opacity: 0.2;
+    }
+}

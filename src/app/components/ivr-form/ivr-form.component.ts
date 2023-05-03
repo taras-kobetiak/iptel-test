@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
+import { Ivr } from 'src/app/abstract-classes/ivr';
+import { IvrEntity } from 'src/app/abstract-classes/ivr-entity';
+import { IvrService } from './services/ivr.service';
 
 @Component({
   selector: 'app-ivr-form',
@@ -10,19 +13,27 @@ import { Subject } from 'rxjs';
 export class IvrFormComponent implements OnInit {
 
   ivrForm: FormGroup;
+  isLoading: boolean = false;
 
-  private unsubscribingData$: Subject<void> = new Subject<void>();
 
-  constructor(private fb: FormBuilder) { }
+
+  constructor(private fb: FormBuilder, private ivrService: IvrService) { }
 
   ngOnInit(): void {
     this.createIvrForm();
+
+
+    this.ivrForm.valueChanges.subscribe(v => {
+      console.log(this.ivrForm);
+
+    })
+
   }
 
   createIvrForm(): void {
     this.ivrForm = this.fb.group({
       // id: '',
-      name: ['', [Validators.required]],
+      name: ['', [Validators.required], [this.ivrService.checkIvrName]],
       description: '',
       announcement: '',
       timeout: '',
@@ -35,12 +46,47 @@ export class IvrFormComponent implements OnInit {
       // timeoutRecording: '',
       // timeoutDestination: '',
 
-      ivrEntityList: [[]]
+      ivrEntityList: [[], Validators.required]
     })
   }
 
   onSubmit(): void {
-    console.log(this.ivrForm);
+    const mainId = this.createId();
+
+
+    console.log(mainId);
+
+
+    const ivrEntity: IvrEntity[] = [{
+      id: 0,
+      name: '',
+      matchedAction: '',
+      matchedData: '',
+      ivrId: 0,
+      leadStatus: ''
+    }]
+
+    const ivr: Ivr = {
+      id: 0,
+      name: '',
+      description: '',
+      announcement: '',
+      timeout: 0,
+      invalidRetries: 0,
+
+      ivrEntityList: ivrEntity,
+
+      appendInvalidRetryRecording: false,
+      appendAnnouncementToTimeout: false,
+      timeoutRetries: 0,
+      timeoutRetryRecording: '',
+      timeoutRecording: '',
+      timeoutDestination: '',
+    }
+  }
+
+  createId(): number {
+    return Math.floor(Math.random() * 1000000000);
   }
 
 }

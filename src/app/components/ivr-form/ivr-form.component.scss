@@ -1,0 +1,116 @@
+.form-wrapper {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.form {
+    padding: 25px;
+    padding-bottom: 40px;
+    background-color: rgb(219, 241, 248);
+    border-radius: 10px;
+    min-width: 30rem;
+    min-height: 28rem;
+}
+
+.main-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    row-gap: 20px;
+}
+
+.header-main-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-main-form__button {
+
+    button {
+        border: none;
+        outline: none;
+        background-color: rgb(219, 241, 248);
+        width: 90px;
+        background: url('../../../assets/img/ivr-form/arrow.png') no-repeat 10px;
+        padding-left: 40px;
+        background-size: 30px auto;
+    }
+
+    :hover {
+        cursor: pointer;
+        color: rgb(11, 10, 10);
+        transform: scale(1.05);
+    }
+}
+
+.main-form__row {
+    display: flex;
+    justify-content: space-between;
+    max-width: 560px;
+}
+
+.main-form__controler {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
+
+
+    input,
+    select {
+        padding-left: 10px;
+        width: 250px;
+        height: 40px;
+        border: 2px solid rgb(157, 152, 152);
+        border-radius: 10px;
+    }
+}
+
+#ivrFormName.ng-pending {
+    background: url('../../../assets/img/ivr-form/loading.gif') 90% 50%/30px no-repeat;
+}
+
+.main-form__loading {
+    width: 20px;
+}
+
+.main-form__label_gif {
+    display: flex;
+    column-gap: 15px;
+}
+
+.main-form__error {
+    font-size: 18px;
+    color: red;
+}
+
+.main-form__controler_big {
+    width: 100%;
+
+    input {
+        width: 100%;
+    }
+
+}
+
+.form-button {
+    padding: 10px;
+    cursor: pointer;
+    color: white;
+    background-color: rgb(0, 174, 255);
+    border: none;
+    border-radius: 3px;
+
+    &:hover {
+        background-color: rgb(4, 143, 207);
+        transform: scale(1.05);
+    }
+
+    &:disabled {
+        opacity: 0.4;
+    }
+}
