@@ -123,7 +123,12 @@
     }
 
     &:disabled {
-        opacity: 0.3;
+        opacity: 0.35;
+
+        &:hover {
+            background-color: rgb(0, 174, 255);
+            transform: scale(1);
+        }
     }
 }
 
