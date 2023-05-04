@@ -112,11 +112,16 @@ export class IvrEntityFormComponent implements OnInit, OnDestroy, ControlValueAc
     )
   }
 
-  setButtonIndex(): number {
+  returnCurrentButtons(): string[] {
     let currentButtons: string[] = [];
     for (let elem of this.buttonsControls.value) {
       currentButtons = [...currentButtons, elem.button]
     }
+    return currentButtons;
+  }
+
+  setButtonIndex(): number {
+    const currentButtons: string[] = this.returnCurrentButtons();
     const buttonIndex: number = 0;
     return this.chackIndex(currentButtons, buttonIndex);
   }
@@ -139,5 +144,4 @@ export class IvrEntityFormComponent implements OnInit, OnDestroy, ControlValueAc
     this.unsubscribingData$.next();
     this.unsubscribingData$.complete();
   }
-
 }

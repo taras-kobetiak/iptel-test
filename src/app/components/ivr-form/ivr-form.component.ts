@@ -47,7 +47,7 @@ export class IvrFormComponent implements OnInit {
 
   createIvrEntityClass(values: any, mainId: number): IvrEntity[] {
     let ivrEntity: IvrEntity[] = [{
-      id: this.createId(),
+      id: 0,
       name: '',
       matchedAction: [],
       matchedData: '',
@@ -76,8 +76,8 @@ export class IvrFormComponent implements OnInit {
       name: values.name,
       description: values.description,
       announcement: values.announcement,
-      timeout: values.timeout,
-      invalidRetries: values.invalidRetries,
+      timeout: Number(values.timeout),
+      invalidRetries: Number(values.invalidRetries),
       ivrEntityList: IvrEntity,
       appendInvalidRetryRecording: false,
       appendAnnouncementToTimeout: false,
