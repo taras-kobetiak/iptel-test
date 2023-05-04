@@ -13,61 +13,64 @@
                         <p>В тестовой версии эта функция недоступна :(</p>
                     </div>
                 </div>
-                <div class="main-form__row">
-                    <div class="main-form__controler">
-                        <div class="main-form__label main-form__label_gif">
-                            <label for="ivrFormName">Название IVR*</label>
+                <div class="main-form__rows">
+                    <div class="main-form__row">
+                        <div class="main-form__controler">
+                            <div class="main-form__label main-form__label_gif">
+                                <label for="ivrFormName">Название IVR*</label>
+                            </div>
+                            <div class="main-form__input">
+                                <input id="ivrFormName" formControlName="name" type="text"
+                                    placeholder="Введите название IVR">
+                            </div>
+                            <p *ngIf="ivrForm.get('name')?.touched && ivrForm.hasError('required', ['name'])"
+                                class="main-form__error">Введите
+                                название IVR, пожалуйста</p>
+                            <p *ngIf="ivrForm.get('name')?.invalid && ivrForm.get('name')?.value"
+                                class="main-form__error">
+                                Такое название уже существует</p>
                         </div>
-                        <div class="main-form__input">
-                            <input id="ivrFormName" formControlName="name" type="text"
-                                placeholder="Введите название IVR">
-                        </div>
-                        <p *ngIf="ivrForm.get('name')?.touched && ivrForm.hasError('required', ['name'])"
-                            class="main-form__error">Введите
-                            название IVR, пожалуйста</p>
-                        <p *ngIf="ivrForm.get('name')?.invalid && ivrForm.get('name')?.value" class="main-form__error">
-                            Такое название уже существует</p>
-                    </div>
-                    <div class="main-form__controler">
-                        <div class="main-form__label">
-                            <p class="main-form__label"> Приветствие</p>
-                        </div>
-                        <div class="main-form__input main-form__input_select">
-                            <select id=" ivrFormAnnouncement" formControlName="announcement">
-                                <option value="" disabled selected style='display:none;'>Выберите аудиофайл</option>
-                                <option>audilfile1.wav</option>
-                                <option>audilfile2.wav</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class=" main-form__row">
-                    <div class="main-form__controler main-form__controler_big">
-                        <div class="main-form__label">
-                            <label for="ivrFormDescription">Описание</label>
-                        </div>
-                        <div class="main-form__input">
-                            <input id="ivrFormDescription" formControlName="description" type="text">
+                        <div class="main-form__controler">
+                            <div class="main-form__label">
+                                <p class="main-form__label"> Приветствие</p>
+                            </div>
+                            <div class="main-form__input main-form__input_select">
+                                <select id=" ivrFormAnnouncement" formControlName="announcement">
+                                    <option value="" disabled selected style='display:none;'>Выберите аудиофайл</option>
+                                    <option>audilfile1.wav</option>
+                                    <option>audilfile2.wav</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="main-form__row">
-                    <div class="main-form__controler">
-                        <div class="main-form__label">
-                            <label for="ivrFormTimeout" placeholder="Введите название IVR">Таймаут</label>
-                        </div>
-                        <div class="main-form__input">
-                            <input id="ivrFormTimeout" formControlName="timeout" type="number"
-                                placeholder="Введите задержку, сек">
+                    <div class=" main-form__row">
+                        <div class="main-form__controler main-form__controler_big">
+                            <div class="main-form__label">
+                                <label for="ivrFormDescription">Описание</label>
+                            </div>
+                            <div class="main-form__input">
+                                <input id="ivrFormDescription" formControlName="description" type="text">
+                            </div>
                         </div>
                     </div>
-                    <div class="main-form__controler">
-                        <div class="main-form__label">
-                            <label for="ivrFormIinvalidRetries">Неудачных попыток</label>
+                    <div class="main-form__row">
+                        <div class="main-form__controler">
+                            <div class="main-form__label">
+                                <label for="ivrFormTimeout" placeholder="Введите название IVR">Таймаут</label>
+                            </div>
+                            <div class="main-form__input">
+                                <input id="ivrFormTimeout" formControlName="timeout" type="number"
+                                    placeholder="Введите задержку, сек">
+                            </div>
                         </div>
-                        <div class="main-form__input">
-                            <input id="ivrFormIinvalidRetries" placeholder="Максимум попыток"
-                                formControlName="invalidRetries" type="number">
+                        <div class="main-form__controler">
+                            <div class="main-form__label">
+                                <label for="ivrFormIinvalidRetries">Неудачных попыток</label>
+                            </div>
+                            <div class="main-form__input">
+                                <input id="ivrFormIinvalidRetries" placeholder="Максимум попыток"
+                                    formControlName="invalidRetries" type="number">
+                            </div>
                         </div>
                     </div>
                 </div>

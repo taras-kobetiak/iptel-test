@@ -17,16 +17,13 @@
     border-radius: 10px;
     min-width: 30rem;
     min-height: 600px;
-}
-
-.main-form {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    row-gap: 20px;
 }
 
 .header-main-form {
+    margin-bottom: 52px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -39,8 +36,14 @@
     right: -20px;
 }
 
-.header-main-form__button {
+.main-form__rows {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
+.header-main-form__button {
     button {
         border: none;
         outline: none;
@@ -67,7 +70,7 @@
 .main-form__controler {
     display: flex;
     flex-direction: column;
-    row-gap: 10px;
+    row-gap: 20px;
 
     input,
     select {
