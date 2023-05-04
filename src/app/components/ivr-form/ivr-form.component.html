@@ -1,79 +1,83 @@
 <form [formGroup]="ivrForm" (ngSubmit)="onSubmit()">
     <div class="form-wrapper">
-        <div class="main-form form">
-            <div class="main-form__header header-main-form">
-                <div class="header-main-form__title">
-                    <h2>Добавить IVR</h2>
+        <div class="main-form__wrapper">
+            <div class="main-form form">
+                <div class="main-form__header header-main-form">
+                    <div class="header-main-form__title">
+                        <h2>Добавить IVR</h2>
+                    </div>
+                    <div class="header-main-form__button">
+                        <button (click)="onBackButtonClick()">Назад</button>
+                    </div>
+                    <div *ngIf="isBackButtonClicked" class="header-main-form__back-clicked">
+                        <p>В тестовой версии эта функция недоступна :(</p>
+                    </div>
                 </div>
-                <div class="header-main-form__button">
-                    <button>Назад</button>
+                <div class="main-form__row">
+                    <div class="main-form__controler">
+                        <div class="main-form__label main-form__label_gif">
+                            <label for="ivrFormName">Название IVR*</label>
+                        </div>
+                        <div class="main-form__input">
+                            <input id="ivrFormName" formControlName="name" type="text"
+                                placeholder="Введите название IVR">
+                        </div>
+                        <p *ngIf="ivrForm.get('name')?.touched && ivrForm.hasError('required', ['name'])"
+                            class="main-form__error">Введите
+                            название IVR, пожалуйста</p>
+                        <p *ngIf="ivrForm.get('name')?.invalid && ivrForm.get('name')?.value" class="main-form__error">
+                            Такое название уже существует</p>
+                    </div>
+                    <div class="main-form__controler">
+                        <div class="main-form__label">
+                            <p class="main-form__label"> Приветствие</p>
+                        </div>
+                        <div class="main-form__input main-form__input_select">
+                            <select id=" ivrFormAnnouncement" formControlName="announcement">
+                                <option value="" disabled selected style='display:none;'>Выберите аудиофайл</option>
+                                <option>audilfile1.wav</option>
+                                <option>audilfile2.wav</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class=" main-form__row">
+                    <div class="main-form__controler main-form__controler_big">
+                        <div class="main-form__label">
+                            <label for="ivrFormDescription">Описание</label>
+                        </div>
+                        <div class="main-form__input">
+                            <input id="ivrFormDescription" formControlName="description" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="main-form__row">
+                    <div class="main-form__controler">
+                        <div class="main-form__label">
+                            <label for="ivrFormTimeout" placeholder="Введите название IVR">Таймаут</label>
+                        </div>
+                        <div class="main-form__input">
+                            <input id="ivrFormTimeout" formControlName="timeout" type="number"
+                                placeholder="Введите задержку, сек">
+                        </div>
+                    </div>
+                    <div class="main-form__controler">
+                        <div class="main-form__label">
+                            <label for="ivrFormIinvalidRetries">Неудачных попыток</label>
+                        </div>
+                        <div class="main-form__input">
+                            <input id="ivrFormIinvalidRetries" placeholder="Максимум попыток"
+                                formControlName="invalidRetries" type="number">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="main-form__row">
-                <div class="main-form__controler">
-                    <div class="main-form__label main-form__label_gif">
-                        <label for="ivrFormName">Название IVR*</label>
-                        <img *ngIf="isLoading" src="../../../assets/img/ivr-form/loading.gif" alt="Loading..."
-                            class="main-form__loading">
-                    </div>
-                    <div class="main-form__input">
-                        <input id="ivrFormName" formControlName="name" type="text" placeholder="Введите название IVR">
-                    </div>
-                    <p *ngIf="ivrForm.get('name')?.touched && ivrForm.hasError('required', ['name'])"
-                        class="main-form__error">Введите
-                        название IVR, пожалуйста</p>
-                    <p *ngIf="ivrForm.get('name')?.invalid && ivrForm.get('name')?.value" class="main-form__error">
-                        Такое название уже существует</p>
-                </div>
-                <div class="main-form__controler">
-                    <div class="main-form__label">
-                        <p class="main-form__label"> Приветствие</p>
-                    </div>
-                    <div class="main-form__input main-form__input_select">
-                        <select id=" ivrFormAnnouncement" formControlName="announcement">
-                            <option value="" disabled selected style='display:none;'>Выберите аудиофайл</option>
-                            <option>audilfile1.wav</option>
-                            <option>audilfile2.wav</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class=" main-form__row">
-                <div class="main-form__controler main-form__controler_big">
-                    <div class="main-form__label">
-                        <label for="ivrFormDescription">Описание</label>
-                    </div>
-                    <div class="main-form__input">
-                        <input id="ivrFormDescription" formControlName="description" type="text">
-                    </div>
-
-                </div>
-            </div>
-            <div class="main-form__row">
-                <div class="main-form__controler">
-                    <div class="main-form__label">
-                        <label for="ivrFormTimeout" placeholder="Введите название IVR">Таймаут</label>
-                    </div>
-                    <div class="main-form__input">
-                        <input id="ivrFormTimeout" formControlName="timeout" type="number"
-                            placeholder="Введите задержку, сек">
-                    </div>
-                </div>
-                <div class="main-form__controler">
-                    <div class="main-form__label">
-                        <label for="ivrFormIinvalidRetries">Неудачных попыток</label>
-                    </div>
-                    <div class="main-form__input">
-                        <input id="ivrFormIinvalidRetries" placeholder="Максимум попыток"
-                            formControlName="invalidRetries" type="number">
-                    </div>
-                </div>
+            <div class="main__button">
+                <button [disabled]="!ivrForm.valid" type="submit" class="form-button">Добавить</button>
             </div>
         </div>
-
-        <div>
+        <div class="actions-form">
             <app-ivr-entity-form formControlName="ivrEntityList"></app-ivr-entity-form>
         </div>
     </div>
-    <button [disabled]="!ivrForm.valid" type="submit" class="form-button">Добавить</button>
 </form>

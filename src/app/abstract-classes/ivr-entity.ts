@@ -1,7 +1,7 @@
 export class IvrEntity {
     id: number;
     name: string;
-    matchedAction: string;
+    matchedAction: string[];
     matchedData: string;
     ivrId: number;
     leadStatus: string;

@@ -1,0 +1,71 @@
+<div class="result" *ngIf="currentIvr.name !==''; else elseBlock">
+    <h3>Вы успешно добавили новый IVR!!!</h3>
+    <div class="current-ivr">
+        <div class="current-ivr__id">
+            <p><span>Id:</span> {{currentIvr.id}}</p>
+        </div>
+        <div class="current-ivr__name">
+            <p><span>Name:</span> {{currentIvr.name}}</p>
+        </div>
+        <div class="current-ivr__description">
+            <p><span>Description:</span> {{currentIvr.description}}</p>
+        </div>
+        <div class="current-ivr__announcement">
+            <p><span>Announcement:</span> {{currentIvr.announcement}}</p>
+        </div>
+        <div class="current-ivr__timeout">
+            <p><span>Timeout:</span> {{currentIvr.timeout}}</p>
+        </div>
+        <div class="current-ivr__invalidRetries">
+            <p><span>Invalid retries:</span> {{currentIvr.invalidRetries}}</p>
+        </div>
+        <h4>IVR entity list</h4>
+        <div class="current-ivr__ivrEntityList ivrEntityList__items">
+            <div class="ivrEntityList__item item" *ngFor="let elem of currentIvr.ivrEntityList">
+                <div>
+                    <p> <span>Button id:</span> {{elem.id}}</p>
+                </div>
+                <div>
+                    <p><span>Button name:</span> {{elem.name}}</p>
+                </div>
+                <div class="item__actions">
+                    Button actions:
+                    <ul>
+                        <li class="item__action" *ngFor="let action of elem.matchedAction">
+                            {{action}}
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <p><span>Matched data:</span> {{elem.matchedData}}</p>
+                </div>
+                <div>
+                    <p><span>IVR id:</span> {{elem.ivrId}}</p>
+                </div>
+                <div>
+                    <p><span>Button load status:</span> {{elem.leadStatus}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #elseBlock class="header">
+    <h3>Сначала нужно заполнить форму!</h3>
+</ng-template>
+
+
+
+
+
+
+
+
+
+<!-- ivrEntityList: IvrEntity,
+
+appendInvalidRetryRecording: false,
+appendAnnouncementToTimeout: false,
+timeoutRetries: 0,
+timeoutRetryRecording: '',
+timeoutRecording: '',
+timeoutDestination: '', -->

@@ -1,14 +1,22 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
-import { BehaviorSubject, Observable, delay, of } from 'rxjs';
+import { Observable, Subject, delay, of } from 'rxjs';
+import { Ivr } from 'src/app/abstract-classes/ivr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IvrService {
 
-  isLoading: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  currentIvr: Ivr;
 
+  setIvr(ivr: Ivr): void {
+    this.currentIvr = JSON.parse(JSON.stringify(ivr));
+  }
+
+  getIvr(): Ivr {
+    return this.currentIvr;
+  }
 
   checkIvrName(control: AbstractControl): Observable<ValidationErrors | null> {
     const testExistingName: string[] = ['name1', 'test', ' test name for IVR'];

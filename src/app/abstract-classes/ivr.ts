@@ -13,5 +13,5 @@ export class Ivr {
     timeoutRetryRecording?: string;
     timeoutRecording?: string;
     timeoutDestination?: string;
-    ivrEntityList?: IvrEntity[];
+    ivrEntityList: IvrEntity[];
 }

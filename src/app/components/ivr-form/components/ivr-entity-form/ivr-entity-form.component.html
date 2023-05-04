@@ -4,85 +4,87 @@
             <div class="actions-form__title">
                 <h2>Действия</h2>
             </div>
-            <div class="action-form__controls">
-                <div class="action-form__items">
-                    <ng-container formArrayName="arrayItemsControl">
-                        <ng-container *ngFor="let item of buttonsItems, let i=index">
-                            <div [formGroupName]="i">
-                                <div class="action-form__item item-action-form">
-                                    <div class="item-action-form__button">
+            <div class="action-form__items">
+                <ng-container formArrayName="arrayItemsControl">
+                    <ng-container *ngFor="let item of buttonsItems, let i=index">
+                        <div [formGroupName]="i">
+                            <div class="action-form__item item-action-form">
+                                <div class="item-action-form__button">
+                                    <div class="item-action-form__label">
+                                        <p>Кнопка</p>
+                                    </div>
+                                    <div class="item-action-form__control">
+                                        <select formControlName="button" class="item-action-form__button">
+                                            <option value="{{data.buttons[buttonIndex]}}"
+                                                *ngFor="let button of data.buttons, let buttonIndex = index">
+                                                {{data.buttons[buttonIndex]}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <button [disabled]="buttonsItems.length <2" (click)="removeArrayItem(i)"
+                                        class="item-action-form__delete-button">Удалить
+                                        кнопку</button>
+                                </div>
+                                <div class="item-action-form__main-data">
+                                    <div class="item-action-form__actions">
+                                        <p>Действия</p>
+                                    </div>
+                                    <div class="item-action-form__controls controls-item-action-form">
+                                        <div formArrayName="actions" class="controls-item-action-form__items">
+                                            <ng-container
+                                                *ngFor="let item of getButtonActionsControl(i).controls, let j=index">
+                                                <div class="controls-item-action-form__item">
+                                                    <div class="controls-item-action-form__select">
+                                                        <select formControlName="{{j}}">
+                                                            <option value="{{data.actions[buttonIndex]}}"
+                                                                *ngFor="let button of data.actions, let buttonIndex = index">
+                                                                {{data.actions[buttonIndex]}}
+                                                            </option>
+                                                        </select>
+                                                        <p *ngIf="item.invalid && item.touched"
+                                                            class="item-action-form__error">
+                                                            Выберите действие, пожалуйста</p>
+                                                    </div>
+                                                    <div class="controls-item-action-form__delete">
+                                                        <button
+                                                            [disabled]="getButtonActionsControl(i).controls.length <2"
+                                                            (click)="deleteButtonAction(i, j)"><img
+                                                                src="../../../../../assets/img/ivr-entity-form/delete.png"
+                                                                alt=""></button>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button [disabled]="getButtonActionsControl(i).controls.length >3"
+                                            (click)="addButtonAction(i)"
+                                            class="item-action-form__add-action-button button">Действие</button>
+                                    </div>
+                                    <div class="item-action-form__status">
                                         <div class="item-action-form__label">
-                                            <p>Кнопка</p>
+                                            <p>Указать статус</p>
                                         </div>
                                         <div class="item-action-form__control">
-                                            <select formControlName="button" class="item-action-form__button">
-                                                <option value="{{buttonIndex}}"
-                                                    *ngFor="let button of data.buttons, let buttonIndex = index">
-                                                    {{data.buttons[buttonIndex]}}
+                                            <select formControlName="status">
+                                                <option value="{{data.statuses[buttonIndex]}}"
+                                                    *ngFor="let button of data.statuses, let buttonIndex = index">
+                                                    {{data.statuses[buttonIndex]}}
                                                 </option>
                                             </select>
-                                        </div>
-                                        <button [disabled]="buttonsItems.length <2" (click)="removeArrayItem(i)"
-                                            class="item-action-form__delete-button">Удалить
-                                            кнопку</button>
-                                    </div>
-                                    <div class="item-action-form__main-data">
-
-                                        <div class="item-action-form__actions">
-                                            <p>Действия</p>
-                                        </div>
-                                        <div class="item-action-form__controls controls-item-action-form">
-                                            <div formArrayName="actions" class="controls-item-action-form__items">
-                                                <ng-container
-                                                    *ngFor="let item of getButtonActionsControl(i).controls, let j=index">
-                                                    <div class="controls-item-action-form__item">
-                                                        <div class="controls-item-action-form__select">
-                                                            <select formControlName="{{j}}">
-                                                                <option value="{{buttonIndex}}"
-                                                                    *ngFor="let button of data.actions, let buttonIndex = index">
-                                                                    {{data.actions[buttonIndex]}}
-                                                                </option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="controls-item-action-form__delete">
-                                                            <button
-                                                                [disabled]="getButtonActionsControl(i).controls.length <2"
-                                                                (click)="deleteButtonAction(i, j)"><img
-                                                                    src="../../../../../assets/img/ivr-entity-form/delete.png"
-                                                                    alt=""></button>
-                                                        </div>
-                                                    </div>
-                                                </ng-container>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <button [disabled]="getButtonActionsControl(i).controls.length >3"
-                                                (click)="addButtonAction(i)"
-                                                class="item-action-form__add-action-button button">Действие</button>
-                                        </div>
-                                        <div class="item-action-form__status">
-                                            <div class="item-action-form__label">
-                                                <p>Указать статус</p>
-                                            </div>
-                                            <div class="item-action-form__control">
-                                                <select formControlName="status">
-                                                    <option value="{{buttonIndex}}"
-                                                        *ngFor="let button of data.statuses, let buttonIndex = index">
-                                                        {{data.statuses[buttonIndex]}}
-                                                    </option>
-                                                </select>
-                                            </div>
+                                            <p *ngIf="item.get('status')?.invalid && item.get('status')?.touched"
+                                                class="item-action-form__error">
+                                                Укажите статус, пожалуйста</p>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-                        </ng-container>
+                        </div>
                     </ng-container>
-                </div>
+                </ng-container>
             </div>
             <div>
-                <button [disabled]="buttonsItems.length >8" (click)="addArrayItem()"
+                <button [disabled]="buttonsItems.length >9" (click)="addArrayItem()"
                     class="actions-form__add-buton button">Еще</button>
             </div>
         </div>
