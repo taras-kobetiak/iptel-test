@@ -31,8 +31,12 @@ export class ResultPageComponent implements OnInit {
   redirectToForm(): void {
     if (this.currentIvr.name === '') {
       setTimeout(() => {
-        this.router.navigate([''])
+        this.router.navigate(['']);
       }, 1500)
     }
+  }
+
+  backToIvrForm(): void {
+    this.router.navigate(['']);
   }
 }

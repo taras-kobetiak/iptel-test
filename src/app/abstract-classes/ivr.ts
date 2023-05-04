@@ -1,6 +1,6 @@
 import { IvrEntity } from "./ivr-entity";
 
-export class Ivr {
+export abstract class Ivr {
     id?: number;
     name: string;
     description?: string;

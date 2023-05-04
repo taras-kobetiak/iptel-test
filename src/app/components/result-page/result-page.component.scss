@@ -1,9 +1,5 @@
-.result {
-    // margin-left: 100px;
-}
-
 h3 {
-    margin-top: 100px;
+    margin: 100px 0 50px 0;
     text-align: center;
     font-size: 36px;
 }
@@ -43,5 +39,24 @@ h3 {
 
     li {
         margin-left: 30px;
+    }
+}
+
+.button-parent {
+    display: flex;
+    justify-content: center;
+}
+
+.back-to-form-button {
+    padding: 20px;
+    cursor: pointer;
+    color: white;
+    background-color: rgba(42, 51, 55, 0.516);
+    border: none;
+    border-radius: 3px;
+
+    &:hover {
+        background-color: rgba(26, 30, 32, 0.516);
+        transform: scale(1.05);
     }
 }

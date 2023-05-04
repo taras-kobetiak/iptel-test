@@ -1,4 +1,4 @@
-export class IvrEntity {
+export abstract class IvrEntity {
     id: number;
     name: string;
     matchedAction: string[];

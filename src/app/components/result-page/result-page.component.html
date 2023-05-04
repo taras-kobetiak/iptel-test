@@ -1,5 +1,10 @@
 <div class="result" *ngIf="currentIvr.name !==''; else elseBlock">
     <h3>Вы успешно добавили новый IVR!!!</h3>
+    <div class="button-parent">
+        <div>
+            <button class="back-to-form-button" (click)="backToIvrForm()">Вернуться на страницу добавления IVR</button>
+        </div>
+    </div>
     <div class="current-ivr">
         <div class="current-ivr__id">
             <p><span>Id:</span> {{currentIvr.id}}</p>

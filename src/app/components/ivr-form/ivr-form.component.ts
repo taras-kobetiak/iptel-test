@@ -41,9 +41,8 @@ export class IvrFormComponent implements OnInit {
     const values: any = this.ivrForm.value;
     const ivrEntity = this.createIvrEntityClass(values, mainId);
     const ivr: Ivr = this.createIvrClass(mainId, values, ivrEntity);
-
     this.ivrService.setIvr(ivr);
-    this.router.navigate(['/result'])
+    this.router.navigate(['/result']);
   }
 
   createIvrEntityClass(values: any, mainId: number): IvrEntity[] {
@@ -63,7 +62,7 @@ export class IvrFormComponent implements OnInit {
         matchedAction: elem.actions,
         matchedData: '',
         ivrId: mainId,
-        leadStatus: elem.leadStatus
+        leadStatus: elem.status,
       }]
     }
 
