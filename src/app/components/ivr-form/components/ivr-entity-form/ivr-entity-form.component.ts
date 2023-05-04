@@ -112,23 +112,19 @@ export class IvrEntityFormComponent implements OnInit, OnDestroy, ControlValueAc
     )
   }
 
-  returnCurrentButtons(): string[] {
+  setButtonIndex(): number {
     let currentButtons: string[] = [];
     for (let elem of this.buttonsControls.value) {
       currentButtons = [...currentButtons, elem.button]
     }
-    return currentButtons;
-  }
 
-  setButtonIndex(): number {
-    const currentButtons: string[] = this.returnCurrentButtons();
     const buttonIndex: number = 0;
-    return this.chackIndex(currentButtons, buttonIndex);
+    return this.checkIndex(currentButtons, buttonIndex);
   }
 
-  chackIndex(currentButtons: string[], buttonIndex: number): number {
+  checkIndex(currentButtons: string[], buttonIndex: number): number {
     return !currentButtons.includes(`Button ${buttonIndex}`) ? buttonIndex :
-      this.chackIndex(currentButtons, ++buttonIndex)
+      this.checkIndex(currentButtons, ++buttonIndex)
   }
 
   validate(): ValidationErrors | null {
