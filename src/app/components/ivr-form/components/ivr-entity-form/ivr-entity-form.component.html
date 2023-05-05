@@ -50,7 +50,8 @@
                                                             [disabled]="getButtonActionsControl(i).controls.length <2"
                                                             (click)="deleteButtonAction(i, j)"><img
                                                                 src="../../../../../assets/img/ivr-entity-form/delete.png"
-                                                                alt=""></button>
+                                                                alt="">
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </ng-container>
@@ -74,7 +75,8 @@
                                             </select>
                                             <p *ngIf="item.get('status')?.invalid && item.get('status')?.touched"
                                                 class="item-action-form__error">
-                                                Укажите статус, пожалуйста</p>
+                                                Укажите статус, пожалуйста
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -85,7 +87,8 @@
             </div>
             <div>
                 <button [disabled]="buttonsItems.length >9" (click)="addArrayItem()"
-                    class="actions-form__add-buton button">Еще</button>
+                    class="actions-form__add-buton button">Еще
+                </button>
             </div>
         </div>
     </div>

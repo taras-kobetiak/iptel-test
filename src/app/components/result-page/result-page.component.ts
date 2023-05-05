@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { IvrService } from '../services/ivr.service';
 import { Ivr } from 'src/app/abstract-classes/ivr';
 import { Router } from '@angular/router';
-import { IvrEntity } from 'src/app/abstract-classes/ivr-entity';
 
 @Component({
   selector: 'app-result-page',
@@ -19,7 +18,6 @@ export class ResultPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
     this.currentIvr = this.ivrService.getIvr() || {
       name: '',
       ivrEntityList: []

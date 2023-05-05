@@ -89,7 +89,7 @@ export class IvrEntityFormComponent implements OnInit, OnDestroy, ControlValueAc
 
   deleteButtonAction(i: number, j: number): void {
     const actions = this.getButtonActionsControl(i);
-    actions.removeAt(j)
+    actions.removeAt(j);
   }
 
   addButtonAction(i: number): void {
@@ -124,7 +124,7 @@ export class IvrEntityFormComponent implements OnInit, OnDestroy, ControlValueAc
 
   checkIndex(currentButtons: string[], buttonIndex: number): number {
     return !currentButtons.includes(`Button ${buttonIndex}`) ? buttonIndex :
-      this.checkIndex(currentButtons, ++buttonIndex)
+      this.checkIndex(currentButtons, ++buttonIndex);
   }
 
   validate(): ValidationErrors | null {
