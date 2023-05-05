@@ -6,7 +6,6 @@
     max-width: 960px;
     display: flex;
     flex-direction: column;
-
     gap: 20px;
 
     select {
@@ -15,6 +14,10 @@
         height: 40px;
         border: 2px solid rgb(157, 152, 152);
         border-radius: 10px;
+    }
+
+    @media (max-width: 1365.98px) {
+        max-width: 520px;
     }
 }
 
