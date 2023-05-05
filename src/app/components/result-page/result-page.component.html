@@ -42,7 +42,7 @@
                     </ul>
                 </div>
                 <div>
-                    <p><span>Matched data:</span> {{elem.matchedData}}</p>
+                    <p><span>Matched data:</span> {{elem.matchedData || 'no data'}}</p>
                 </div>
                 <div>
                     <p><span>IVR id:</span> {{elem.ivrId}}</p>
@@ -52,25 +52,26 @@
                 </div>
             </div>
         </div>
+        <div class="current-ivr__invalidRetries">
+            <p><span>Append invalid retrys recording:</span> {{currentIvr.appendInvalidRetryRecording}}</p>
+        </div>
+        <div class="current-ivr__invalidRetries">
+            <p><span>Append announcement to timeout:</span> {{currentIvr.appendAnnouncementToTimeout}}</p>
+        </div>
+        <div class="current-ivr__invalidRetries">
+            <p><span>Timeout retries:</span> {{currentIvr.timeoutRetries || 'no data'}}</p>
+        </div>
+        <div class="current-ivr__invalidRetries">
+            <p><span>Timeout retry recording:</span> {{currentIvr.timeoutRetryRecording || 'no data'}}</p>
+        </div>
+        <div class="current-ivr__invalidRetries">
+            <p><span>Timeout recording:</span> {{currentIvr.timeoutRecording || 'no data'}}</p>
+        </div>
+        <div class="current-ivr__invalidRetries current-ivr__invalidRetries_last">
+            <p><span>Timeout destination:</span> {{currentIvr.timeoutDestination || 'no data'}}</p>
+        </div>
     </div>
 </div>
 <ng-template #elseBlock class="header">
     <h3>Сначала нужно заполнить форму!</h3>
 </ng-template>
-
-
-
-
-
-
-
-
-
-<!-- ivrEntityList: IvrEntity,
-
-appendInvalidRetryRecording: false,
-appendAnnouncementToTimeout: false,
-timeoutRetries: 0,
-timeoutRetryRecording: '',
-timeoutRecording: '',
-timeoutDestination: '', -->
